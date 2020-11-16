@@ -1,0 +1,20 @@
+{
+  "name": "accept-payments-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "start": "node server.js"
+  },
+  "author": "David Fransch",
+  "license": "ISC",
+  "dependencies": {
+    "stripe": "^8.120.0"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "supertest": "^6.0.1"
+  }
+}
