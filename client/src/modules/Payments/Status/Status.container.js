@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 
-import Component from "./Product.component"
+import Component from "./Status.component"
 import { navigateTo } from "../payments.reducer"
 
 const mapDispatchToProps = (dispatch) => ({

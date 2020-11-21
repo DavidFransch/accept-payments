@@ -2,5 +2,8 @@
 // actions
 //---------------------------------
 
-export const NAVIGATE_TO_CHECKOUT = "[payments] navigate to checkout page"
-export const navigateToCheckout = () => ({ type: NAVIGATE_TO_CHECKOUT })
+export const NAVIGATE_TO = "[payments] navigate to checkout page"
+export const navigateTo = (path) => ({
+  type: NAVIGATE_TO,
+  payload: path,
+})
