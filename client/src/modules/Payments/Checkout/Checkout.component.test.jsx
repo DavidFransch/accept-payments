@@ -1,10 +1,15 @@
 import React from "react"
 import { render } from "@testing-library/react"
+import { Elements } from "@stripe/react-stripe-js"
+import { loadStripe } from "@stripe/stripe-js"
 import { Provider } from "react-redux"
+const promise = loadStripe(
+  "pk_test_51HbSZlHjgviKjH6jbzZHNDU9fVoLcaYNkFhkCuHBFjQ2uH9hZfwDFCGh2b1Iv45o4XS5MMEr7lPGQwbKyJvymZqN00vT91EWMI"
+)
 
-import Status from "./Status.container"
+import Checkout from "./Checkout.container"
 
-describe("modules/Status/Status.component", () => {
+describe("modules/Checkout/Checkout.component", () => {
   describe("render", () => {
     it("should render correctly", () => {
       const unsubscribeStub = jest.fn()
@@ -18,7 +23,9 @@ describe("modules/Status/Status.component", () => {
       }
       render(
         <Provider store={storeStub}>
-          <Status />
+          <Elements stripe={promise}>
+            <Checkout />
+          </Elements>
         </Provider>
       )
     })

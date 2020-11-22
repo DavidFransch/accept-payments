@@ -1,10 +1,9 @@
 import React from "react"
 import { render } from "@testing-library/react"
+import ProductList from "./ProductList.container"
 import { Provider } from "react-redux"
 
-import Status from "./Status.container"
-
-describe("modules/Status/Status.component", () => {
+describe("modules/ProductList/ProductList.component", () => {
   describe("render", () => {
     it("should render correctly", () => {
       const unsubscribeStub = jest.fn()
@@ -18,7 +17,7 @@ describe("modules/Status/Status.component", () => {
       }
       render(
         <Provider store={storeStub}>
-          <Status />
+          <ProductList />
         </Provider>
       )
     })

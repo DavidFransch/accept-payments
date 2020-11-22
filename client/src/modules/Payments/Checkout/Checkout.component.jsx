@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
 
-const Checkout = ({ onNavigateTo }) => {
+const Checkout = ({ onNavigateTo, productId }) => {
   const [succeeded, setSucceeded] = useState(false)
   const [error, setError] = useState(null)
   const [processing, setProcessing] = useState("")
@@ -18,7 +18,7 @@ const Checkout = ({ onNavigateTo }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
+        body: JSON.stringify({ items: [{ id: productId }] }),
       })
       .then((res) => {
         return res.json()
@@ -26,7 +26,7 @@ const Checkout = ({ onNavigateTo }) => {
       .then((data) => {
         setClientSecret(data.clientSecret)
       })
-  }, [])
+  })
 
   const cardStyle = {
     style: {
