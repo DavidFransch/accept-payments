@@ -1,7 +1,7 @@
 # Accept Payments using React, Node and Stripe
 
-> A payment POC that allows a user to select and pay for a product.
-> Technologies used:
+> A payment POC that allows a user to select and pay for a product.<br/>
+> Technologies used:<br/>
 > React, Redux, Node and Stripe
 
 ## Quick Start (local)
