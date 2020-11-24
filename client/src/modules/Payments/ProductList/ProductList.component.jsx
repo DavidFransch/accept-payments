@@ -3,30 +3,33 @@ import PropTypes from "prop-types"
 import { map, isEmpty } from "ramda"
 
 import ProductSummary from "../ProductSummary/ProductSummary.component"
+import "./ProductList.css"
 
 const ProductList = ({ onSelectProduct, products }) => {
   const emptyView = <div>...</div>
 
   const populatedView = (
     <ul>
-      {map(
-        ({ id, label }) => (
-          <ProductSummary
-            key={id}
-            id={id}
-            label={label}
-            onSelect={onSelectProduct}
-          />
-        ),
-        products
-      )}
+      <section className="cards">
+        {map(
+          ({ id, label }) => (
+            <ProductSummary
+              key={id}
+              id={id}
+              label={label}
+              onSelect={onSelectProduct}
+            />
+          ),
+          products
+        )}
+      </section>
     </ul>
   )
 
   return (
-    <div className="ProductList">
-      <header className="ProductList__heading">Product List</header>
-      <main className="ProductList__main">
+    <div className="container">
+      <h1 className="heading">Product List</h1>
+      <main className="mainContent">
         {isEmpty(products) ? emptyView : populatedView}
       </main>
     </div>

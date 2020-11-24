@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
 import { path, prop } from "ramda"
 
-import Product from "./Product.component"
+import ProductDetail from "./ProductDetail.component"
 import { navigateTo } from "../products.reducer"
 
 const mapStateToProps = (state) => {
@@ -20,4 +20,4 @@ const mapDispatchToProps = (dispatch) => ({
   onNavigateTo: (path) => dispatch(navigateTo(path)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Product)
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail)

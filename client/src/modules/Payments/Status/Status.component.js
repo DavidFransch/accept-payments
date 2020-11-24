@@ -1,19 +1,19 @@
 import React from "react"
 
+import "./Status.css"
+
 const Status = ({ onNavigateTo }) => {
   return (
-    <div>
-      <h1>Status Page</h1>
-      {/* Show a success message upon completion */}
-      <p>
+    <div className="container">
+      <h1>Payment Status</h1>
+      <p className="content">
         {" "}
-        {/* className={succeeded ? "result-message" : "result-message hidden"}*/}
         Payment successful, see the result in your
         <a href={`https://dashboard.stripe.com/test/payments`}>
           {" "}
           Stripe dashboard.
         </a>{" "}
-        <button onClick={() => onNavigateTo("/")}>
+        <button className="button" onClick={() => onNavigateTo("/")}>
           Select another product
         </button>
       </p>

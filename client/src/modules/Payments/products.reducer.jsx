@@ -18,9 +18,9 @@ export const selectProduct = (id) => ({ type: SELECT_PRODUCT, payload: { id } })
 //---------------------------------
 
 export const INITIAL_STATE = {
-  1: { label: "PRODUCT 1", amount: 5000 },
-  2: { label: "PRODUCT 2", amount: 10000 },
-  3: { label: "PRODUCT 3", amount: 15000 },
+  1: { label: "Product 1", amount: 5000 },
+  2: { label: "Product 2", amount: 10000 },
+  3: { label: "Product 3", amount: 15000 },
 }
 
 const reducer = createReducer(INITIAL_STATE, {})

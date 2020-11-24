@@ -13,8 +13,7 @@ const promise = loadStripe(
 
 const Component = () => (
   <div className="App">
-    <header className="App__heading">App Component</header>
-    <main className="App__main">
+    <main>
       <Router history={history}>
         <Route exact path="/">
           <ProductList />

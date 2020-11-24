@@ -1,0 +1,19 @@
+.container {
+  display: grid;
+  place-items: center;
+}
+
+.button {
+  font-weight: 600;
+  background: transparent;
+  border: 1px solid #000;
+  border-radius: 4px;
+  margin-right: 1rem;
+  padding: 0.5rem;
+  margin-top: 1rem;
+}
+
+.content {
+  display: flex;
+  flex-flow: column;
+}

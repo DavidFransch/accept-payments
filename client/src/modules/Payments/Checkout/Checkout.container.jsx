@@ -17,6 +17,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   onNavigateTo: (path) => dispatch(navigateTo(path)),
+  onBack: (path) => dispatch(navigateTo(path)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout)

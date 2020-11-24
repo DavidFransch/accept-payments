@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
 
-const Checkout = ({ onNavigateTo, productId }) => {
+import "./Checkout.css"
+
+const Checkout = ({ onNavigateTo, productId, onBack }) => {
   const [succeeded, setSucceeded] = useState(false)
   const [error, setError] = useState(null)
   const [processing, setProcessing] = useState("")
@@ -11,22 +13,26 @@ const Checkout = ({ onNavigateTo, productId }) => {
   const elements = useElements()
 
   useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
-    window
-      .fetch("/create-payment-intent", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ items: [{ id: productId }] }),
-      })
-      .then((res) => {
-        return res.json()
-      })
-      .then((data) => {
-        setClientSecret(data.clientSecret)
-      })
-  })
+    if (productId) {
+      window
+        .fetch("/create-payment-intent", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ items: [{ id: productId }] }),
+        })
+        .then((res) => {
+          return res.json()
+        })
+        .then((data) => {
+          setClientSecret(data.clientSecret)
+        })
+        .catch((e) => {
+          console.error(e)
+        })
+    }
+  }, [productId])
 
   const cardStyle = {
     style: {
@@ -47,8 +53,6 @@ const Checkout = ({ onNavigateTo, productId }) => {
   }
 
   const handleChange = async (event) => {
-    // Listen for changes in the CardElement
-    // and display any errors as the customer types their card details
     setDisabled(event.empty)
     setError(event.error ? event.error.message : "")
   }
@@ -69,29 +73,57 @@ const Checkout = ({ onNavigateTo, productId }) => {
       setError(null)
       setProcessing(false)
       setSucceeded(true)
-      onNavigateTo("/status")
+      fetch("/webhook", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => {
+          return res.json()
+        })
+        .then((data) => {
+          onNavigateTo("/status")
+        })
+        .catch((e) => {
+          console.error(e)
+        })
     }
   }
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
-      <CardElement
-        id="card-element"
-        options={cardStyle}
-        onChange={handleChange}
-      />
-      <button disabled={processing || disabled || succeeded} id="submit">
-        <span id="button-text">
-          {processing ? <div className="spinner" id="spinner"></div> : "Pay"}
-        </span>
-      </button>
-      {/* Show any error that happens when processing the payment */}
-      {error && (
-        <div className="card-error" role="alert">
-          {error}
-        </div>
-      )}
-    </form>
+    <div className="checkoutContainer">
+      <form className="form" id="payment-form" onSubmit={handleSubmit}>
+        <CardElement
+          id="card-element"
+          options={cardStyle}
+          onChange={handleChange}
+        />
+        <button
+          className="button"
+          disabled={processing || disabled || succeeded}
+          id="submit"
+        >
+          <span id="button-text">
+            {processing ? <div className="spinner" id="spinner"></div> : "Pay"}
+          </span>
+        </button>
+        {error && (
+          <div>
+            <div className="card-error" role="alert">
+              {error}
+            </div>
+            <button
+              className="backButton"
+              onClick={() => onBack(`/product/${productId}`)}
+              type="button"
+            >
+              Back
+            </button>
+          </div>
+        )}
+      </form>
+    </div>
   )
 }
 

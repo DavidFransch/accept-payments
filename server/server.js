@@ -30,13 +30,42 @@ const calculateOrderAmount = (items) => {
 app.post("/create-payment-intent", async (req, res) => {
   const { items } = req.body
 
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount: calculateOrderAmount(items),
-    currency: "usd",
-  })
-  res.send({
-    clientSecret: paymentIntent.client_secret,
-  })
+  const paymentIntent = await stripe.paymentIntents
+    .create({
+      amount: calculateOrderAmount(items),
+      currency: "usd",
+    })
+    .catch((e) => {
+      console.error(e)
+    })
+  if (paymentIntent) {
+    res.send({
+      clientSecret: paymentIntent.client_secret,
+    })
+  }
+})
+
+app.post("/webhook", (req, res) => {
+  let event
+  console.log(req.body)
+  try {
+    event = req.body
+  } catch (err) {
+    res.status(400).send(`Webhook Error: ${err.message}`)
+  }
+  switch (event.type) {
+    case "payment_intent.succeeded":
+      const paymentIntent = event.data.object
+      console.log("PaymentIntent was successful!")
+      break
+    case "charge.succeeded":
+      const paymentMethod = event.data.object
+      console.log("The charge has been succesful!")
+      break
+    default:
+      console.log(`Unhandled event type ${event.type}`)
+  }
+  res.json({ received: true })
 })
 
 module.exports = app

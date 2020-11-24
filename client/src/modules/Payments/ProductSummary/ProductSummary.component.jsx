@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { isNil } from "ramda"
+import logo from "./logo192.png"
 
 import "./ProductSummary.css"
 
@@ -16,7 +17,12 @@ const ProductSummary = ({ onSelect, id, label }) => {
       onClick={() => onSelect(id)}
       onKeyDown={() => onSelect(id)}
     >
-      {label}
+      <h1 className="productLabel">{label}</h1>
+      <div className="card">
+        <div className="card-inner">
+          <img src={logo} alt="" />
+        </div>
+      </div>
     </li>
   )
 
