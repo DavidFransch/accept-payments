@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import "./Product.css"
+import "./ProductDetail.css"
 
 const Product = ({ productId, amount, onBack, onNavigateTo }) => {
   return (

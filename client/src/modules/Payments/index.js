@@ -1,8 +1,15 @@
-import Product from "./Product/Product.container"
+import ProductDetail from "./ProductDetail/ProductDetail.container"
 import ProductList from "./ProductList/ProductList.container"
 import Checkout from "./Checkout/Checkout.container"
 import Status from "./Status/Status.container"
 import products from "./products.reducer"
 import selectedProduct from "./selectedProduct.reducer"
 
-export { ProductList, Product, Checkout, Status, products, selectedProduct }
+export {
+  ProductList,
+  ProductDetail,
+  Checkout,
+  Status,
+  products,
+  selectedProduct,
+}
