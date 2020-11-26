@@ -1,38 +1,16 @@
-const express = require("express")
-const bodyParser = require("body-parser")
+const { SECRET_TEST_API } = require("./constants")
+const stripe = require("stripe")(SECRET_TEST_API.KEY)
+const { calculateOrderAmount } = require("./data")
 
-const app = express()
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-
-// This is the real test secret API key.
-const stripe = require("stripe")(
-  "sk_test_51HbSZlHjgviKjH6joKQXoRzbG9Zb4AUBdn14FUOnbTZM3lyKqRqtrU6nh8RDwXfVpgQZnHne1I8KYBgYtdcJ95jD00stleuqGf"
-)
-
-const calculateOrderAmount = (items) => {
-  if (items === null) {
-    return
-  }
-  switch (items[0].id) {
-    case 1:
-      return 5000
-      break
-    case 2:
-      return 10000
-      break
-    case 3:
-      return 15000
-  }
-}
-
-app.post("/create-payment-intent", async (req, res) => {
+const createPaymentIntentHandler = async (req, res) => {
   const { items } = req.body
+  if (!items) {
+    return Promise.req.error
+  }
 
   const paymentIntent = await stripe.paymentIntents
     .create({
-      amount: calculateOrderAmount(items),
+      amount: calculateOrderAmount[items[0].id],
       currency: "usd",
     })
     .catch((e) => {
@@ -43,11 +21,12 @@ app.post("/create-payment-intent", async (req, res) => {
       clientSecret: paymentIntent.client_secret,
     })
   }
-})
+}
 
-app.post("/webhook", (req, res) => {
+module.exports.createPaymentIntentHandler = createPaymentIntentHandler
+
+const webhookHandler = (req, res) => {
   let event
-  console.log(req.body)
   try {
     event = req.body
   } catch (err) {
@@ -66,6 +45,6 @@ app.post("/webhook", (req, res) => {
       console.log(`Unhandled event type ${event.type}`)
   }
   res.json({ received: true })
-})
+}
 
-module.exports = app
+module.exports.webhookHandler = webhookHandler

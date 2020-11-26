@@ -3,9 +3,8 @@ import { render } from "@testing-library/react"
 import { Elements } from "@stripe/react-stripe-js"
 import { loadStripe } from "@stripe/stripe-js"
 import { Provider } from "react-redux"
-const promise = loadStripe(
-  "pk_test_51HbSZlHjgviKjH6jbzZHNDU9fVoLcaYNkFhkCuHBFjQ2uH9hZfwDFCGh2b1Iv45o4XS5MMEr7lPGQwbKyJvymZqN00vT91EWMI"
-)
+import { PROMISE_TEST_API } from "./constants"
+const promise = loadStripe(PROMISE_TEST_API.KEY)
 
 import Checkout from "./Checkout.container"
 

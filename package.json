@@ -2,15 +2,17 @@
   "name": "accept-payments-poc",
   "version": "1.0.0",
   "scripts": {
-    "client": "cd client && npm start",
-    "server": "cd server && nodemon start.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+    "client": "npm run --prefix client start",
+    "api": "npm run --prefix api start",
+    "dev": "concurrently --kill-others-on-fail \"npm run api\" \"npm run client\""
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "dotenv": "^8.2.0",
     "express": "^4.16.4"
   },
   "devDependencies": {
-    "concurrently": "^4.0.1"
+    "concurrently": "^4.0.1",
+    "nodemon": "^2.0.6"
   }
 }

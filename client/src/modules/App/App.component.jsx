@@ -7,9 +7,8 @@ import { Elements } from "@stripe/react-stripe-js"
 import history from "../../common/redux/history"
 import "./App.css"
 import { ProductList, ProductDetail, Checkout, Status } from "../Payments"
-const promise = loadStripe(
-  "pk_test_51HbSZlHjgviKjH6jbzZHNDU9fVoLcaYNkFhkCuHBFjQ2uH9hZfwDFCGh2b1Iv45o4XS5MMEr7lPGQwbKyJvymZqN00vT91EWMI"
-)
+import { PROMISE_TEST_API } from "./constants"
+const promise = loadStripe(PROMISE_TEST_API.KEY)
 
 const Component = () => (
   <div className="App">
