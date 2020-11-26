@@ -7,10 +7,14 @@
 ## Quick Start (local)
 
 1.  Clone or fork respository
+
 2.  Initialize packages
     > cd accept-payments && npm i
+    
     > cd accept-payments/client && npm i
+    
     > cd accept-payments/server && npm i
+    
 3.  Run `npm run dev` from root
 
 ## Testing payments
