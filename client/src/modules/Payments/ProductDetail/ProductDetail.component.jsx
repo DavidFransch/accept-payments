@@ -2,6 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 
 import "./ProductDetail.css"
+import { calcUSD } from "./utils"
 
 const Product = ({ productId, amount, onBack, onNavigateTo }) => {
   return (
@@ -13,11 +14,7 @@ const Product = ({ productId, amount, onBack, onNavigateTo }) => {
             <strong>Product ID:</strong> {productId}
           </li>
           <li>
-            <strong>Amount:</strong>{" "}
-            {(amount / 100).toLocaleString("en-us", {
-              style: "currency",
-              currency: "USD",
-            })}
+            <strong>Amount:</strong> {calcUSD(amount)}
           </li>
         </ul>
         <footer>

@@ -8,14 +8,19 @@
 
 1.  Clone or fork respository
 
-2.  Initialize packages
-    > cd accept-payments && npm i
-    
-    > cd accept-payments/client && npm i
-    
-    > cd accept-payments/server && npm i
-    
-3.  Run `npm run dev` from root
+2.  CD into directory
+
+    > cd accept-payments
+
+3.  Initialize packages
+
+    > npm i
+
+    > cd client && npm i
+
+    > cd server && npm i
+
+4.  Run `npm run dev` from root
 
 ## Testing payments
 

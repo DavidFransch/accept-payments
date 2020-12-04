@@ -4,6 +4,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
 import "./Checkout.css"
 
 const Checkout = ({ onNavigateTo, productId, onBack }) => {
+  // TODO: use with redux
   const [succeeded, setSucceeded] = useState(false)
   const [error, setError] = useState(null)
   const [processing, setProcessing] = useState("")
@@ -11,7 +12,7 @@ const Checkout = ({ onNavigateTo, productId, onBack }) => {
   const [clientSecret, setClientSecret] = useState("")
   const stripe = useStripe()
   const elements = useElements()
-
+  // TODO: do with redux effects
   useEffect(() => {
     if (productId) {
       window
@@ -73,21 +74,7 @@ const Checkout = ({ onNavigateTo, productId, onBack }) => {
       setError(null)
       setProcessing(false)
       setSucceeded(true)
-      fetch("/webhook", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => {
-          return res.json()
-        })
-        .then((data) => {
-          onNavigateTo("/status")
-        })
-        .catch((e) => {
-          console.error(e)
-        })
+      onNavigateTo("/status")
     }
   }
 

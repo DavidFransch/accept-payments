@@ -32,6 +32,7 @@ const webhookHandler = (req, res) => {
   } catch (err) {
     res.status(400).send(`Webhook Error: ${err.message}`)
   }
+
   switch (event.type) {
     case "payment_intent.succeeded":
       const paymentIntent = event.data.object
