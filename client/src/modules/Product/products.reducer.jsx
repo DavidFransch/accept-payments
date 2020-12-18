@@ -1,17 +1,20 @@
-import { createReducer } from "@reduxjs/toolkit"
+import { createReducer, createAction } from "@reduxjs/toolkit"
 
 //---------------------------------
 // actions
 //---------------------------------
 
-export const NAVIGATE_TO = "[payments] navigate to checkout page"
+export const SELECT_PRODUCT = "[product] select"
+export const selectProduct = (id) => ({ type: SELECT_PRODUCT, payload: { id } })
+
+export const NAVIGATE_TO = "[product] navigate to checkout page"
 export const navigateTo = (path) => ({
   type: NAVIGATE_TO,
   payload: path,
 })
 
-export const SELECT_PRODUCT = "[product] select"
-export const selectProduct = (id) => ({ type: SELECT_PRODUCT, payload: { id } })
+export const GET_PAYMENT_INTENT = "[product] get payment intent"
+export const getPaymentIntent = createAction(GET_PAYMENT_INTENT)
 
 //---------------------------------
 // reducer

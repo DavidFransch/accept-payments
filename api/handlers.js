@@ -32,10 +32,11 @@ const webhookHandler = (req, res) => {
   } catch (err) {
     res.status(400).send(`Webhook Error: ${err.message}`)
   }
-
   switch (event.type) {
+    case "payment_intent.created":
+      console.log("PaymentIntent was created!")
+      break
     case "payment_intent.succeeded":
-      const paymentIntent = event.data.object
       console.log("PaymentIntent was successful!")
       break
     case "charge.succeeded":
@@ -45,7 +46,7 @@ const webhookHandler = (req, res) => {
     default:
       console.log(`Unhandled event type ${event.type}`)
   }
-  res.json({ received: true })
+  res.send({ received: true })
 }
 
 module.exports.webhookHandler = webhookHandler

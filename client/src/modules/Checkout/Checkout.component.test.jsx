@@ -3,7 +3,7 @@ import { render } from "@testing-library/react"
 import { Elements } from "@stripe/react-stripe-js"
 import { loadStripe } from "@stripe/stripe-js"
 import { Provider } from "react-redux"
-import { PROMISE_TEST_API } from "./constants"
+import { PROMISE_TEST_API } from "../App/constants"
 const promise = loadStripe(PROMISE_TEST_API.KEY)
 
 import Checkout from "./Checkout.container"

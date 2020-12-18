@@ -5,10 +5,14 @@ import {
   selectProductFlow,
   setSelectedProductFlow,
   navigateToFlow,
-} from "../../modules/Payments/products.middleware"
+  getPaymentIntentOnNavFlow,
+  getPaymentIntentFlow,
+} from "../../modules/Product/products.middleware"
 
 export default [
   selectProductFlow(push),
   navigateToFlow(push),
   setSelectedProductFlow({ LOCATION_CHANGE }),
+  getPaymentIntentOnNavFlow(),
+  getPaymentIntentFlow(),
 ]

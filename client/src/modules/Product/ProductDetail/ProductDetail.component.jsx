@@ -3,8 +3,20 @@ import PropTypes from "prop-types"
 
 import "./ProductDetail.css"
 import { calcUSD } from "./utils"
+import { Routes } from "../../../common/routes"
 
-const Product = ({ productId, amount, onBack, onNavigateTo }) => {
+const Product = ({
+  productId,
+  amount,
+  onBack,
+  onNavigateTo,
+  onGetPaymentIntent,
+}) => {
+  const handleCheckout = () => {
+    onNavigateTo(Routes.CHECKOUT)
+    onGetPaymentIntent()
+  }
+
   return (
     <div className="container">
       <h1 className="heading">Product Details</h1>
@@ -20,14 +32,14 @@ const Product = ({ productId, amount, onBack, onNavigateTo }) => {
         <footer>
           <button
             className="backButton"
-            onClick={() => onBack("/")}
+            onClick={() => onBack(Routes.PRODUCT_LIST)}
             type="button"
           >
             Back
           </button>
           <button
             className="checkoutButton"
-            onClick={() => onNavigateTo("/checkout")}
+            onClick={() => handleCheckout()}
             type="button"
           >
             Go to checkout

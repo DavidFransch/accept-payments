@@ -1,17 +1,16 @@
 import { connect } from "react-redux"
-import { path, prop } from "ramda"
+import { prop } from "ramda"
 
 import Checkout from "./Checkout.component"
-import { navigateTo } from "../products.reducer"
+import { navigateTo } from "../Product/products.reducer"
 
 const mapStateToProps = (state) => {
   const selectedProduct = prop("selectedProduct", state)
-  const amount = path(["products", selectedProduct, "amount"], state)
-  const label = path(["products", selectedProduct, "label"], state)
+  const selectedClientSecret = prop("selectedClient", state)
+
   return {
     productId: selectedProduct,
-    amount,
-    label,
+    clientSecret: selectedClientSecret,
   }
 }
 

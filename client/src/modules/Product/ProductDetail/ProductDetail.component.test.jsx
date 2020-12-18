@@ -1,6 +1,6 @@
 import React from "react"
 import { render } from "@testing-library/react"
-import ProductDetail from "./Product.container"
+import ProductDetail from "./ProductDetail.container"
 import { Provider } from "react-redux"
 
 describe("modules/ProductDetail/ProductDetail.component", () => {

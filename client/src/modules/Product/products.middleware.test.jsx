@@ -4,7 +4,7 @@ import { selectProduct, navigateTo } from "./products.reducer"
 import { setSelectedProduct } from "./selectedProduct.reducer"
 import * as SUT from "./products.middleware"
 
-describe("modules/Payments/selectProduct.middleware", () => {
+describe("modules/Product/selectProduct.middleware", () => {
   let sandbox = null
 
   beforeEach(async () => {

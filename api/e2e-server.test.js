@@ -23,7 +23,9 @@ describe("/api/server", () => {
     describe("stripe-webhook", () => {
       it("returns a valid response from stripe", async () => {
         // when ... we call the webhook endpoint with a webhook event
-        const response = await request.post("/webhook")
+        const response = await request.post("/webhook").send({
+          type: "payment_intent.created",
+        })
         // then ... the status response should be valid
         expect(response.status).toBe(200)
       })
